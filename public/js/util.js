@@ -1,7 +1,18 @@
 const ACCOUNTING_COMPANY = 1;
 
+const generateRandomString = (length = 8, charset = 'abcdefghijklmnopqrstuvwxyz0123456789') => {
+  const result = [];
+  
+  for(let i = 0; i < length; i++) {
+    result.push(charset.charAt(Math.floor(Math.random() * charset.length)));
+  }
+  
+  return result.join('');
+}
+
 // The current user.
-var current_user = { 'uid' : undefined, 'username' : undefined };
+myUID = generateRandomString();
+var current_user = { 'uid' : myUID, 'username' : undefined };
 var user_snap = undefined;
 
 function resetCurrentUser() {

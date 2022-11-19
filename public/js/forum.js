@@ -98,39 +98,41 @@ async function renderThread(thread_id, img) {
   });
 }
 
-function registerReply(elem) {
-  async function createReply(elem, args) {
-    // Fetch the thread id.
-    let thread_id = elem.id.split('.')[1];
-    console.log('trhead_id=' + thread_id)
+// function registerReply(elem) {
+//   console.log('[registerReply] elem=' + elem);
 
-    // Set the user.
-    args['user'] = current_user;
+//   async function createReply(elem, args) {
+//     // Fetch the thread id.
+//     let thread_id = elem.id.split('.')[1];
+//     console.log('trhead_id=' + thread_id)
 
-    // Get a key for a new invoice.
-    let key = db.ref(`posts/${thread_id}`).child('responses').push().key;
+//     // Set the user.
+//     args['user'] = current_user;
+
+//     // Get a key for a new invoice.
+//     let key = db.ref(`posts/${thread_id}`).child('responses').push().key;
   
-    // And update.
-    let updates = {};
-    updates['/posts/' + thread_id + '/responses/' + key] = args;
-    return [thread_id, db.ref().update(updates)];
-  }
+//     // And update.
+//     let updates = {};
+//     updates['/posts/' + thread_id + '/responses/' + key] = args;
+//     return [thread_id, db.ref().update(updates)];
+//   }
 
-  disableScreen();
-  createReply(elem, {
-    content : elem.value,
-    timestamp : getTimestamp()
-  }).then((ret) => {
-    console.log(ret);
-    // Delete the element.
-    deleteElement(document.getElementById(`response.${ret[0]}`));
+//   disableScreen();
+//   createReply(elem, {
+//     content : elem.value,
+//     timestamp : getTimestamp()
+//   }).then((ret) => {
+//     console.log(ret);
+//     // Delete the element.
+//     deleteElement(document.getElementById(`response.${ret[0]}`));
 
-    // Reset thread.
-    renderThread(ret[0]).then(() => {
-      enableScreen();
-    });
-  });
-}
+//     // Reset thread.
+//     renderThread(ret[0]).then(() => {
+//       enableScreen();
+//     });
+//   });
+// }
 
 function reply(elem) {
   // Retrieve the user.

@@ -6,112 +6,148 @@ function increase() {
   $('#star-icon').css('color', '#FFC300');
 }
 
-async function renderThread(thread_id, img) {
+function registerReply(threadID, userUID, stream) {
+  console.log('[registerReply] elem=' + elem);
+
+  async function createReply(elem, args) {
+    // Fetch the thread id.
+    let thread_id = elem;//.id.split('.')[1];
+    // console.log('trhead_id=' + thread_id)
+
+    // Set the user.
+    args['user'] = current_user;
+
+    // Get a key for a new invoice.
+    let key = db.ref(`posts/${thread_id}`).child('responses').push().key;
+  
+    console.log('key=' + key);
+
+    // And update.
+    let updates = {};
+    updates['/posts/' + thread_id + '/responses/' + key] = args;
+    return [thread_id, db.ref().update(updates)];
+  }
+
+  disableScreen();
+  createReply(threadID, {
+    content : stream,
+    timestamp : getTimestamp()
+  }).then((ret) => {
+    console.log(ret);
+    // // Delete the element.
+    // deleteElement(document.getElementById(`response.${ret[0]}`));
+
+    // // Reset thread.
+    // renderThread(ret[0]).then(() => {
+    //   enableScreen();
+    // });
+  });
+}
+
+async function renderThread(thread_id) {
   // Init the thread.
   $('#thread').html('');
-
-  // Fetch the profile.
+  
   const snap = await db.ref(`posts/${thread_id}`).once('value');
 
   console.log(snap.val());
 
-  fetchProfile(thread_id, snap.val()).then((ret) => {
-    let dict = ret.snap;
-    let nl_time = explainTime(dict.timestamp, 'ago');
-    let tagsWithColors = [];
-    if (dict.tags.length) {
-      for (tag of dict.tags.split(',')) {
-        tagsWithColors.push(`<mark style='background: #F5F5F5'>#${tag}</mark>`);
-      }
-    }
+  let userUID = snap.val().user.uid;  
 
-    let num_stars = Math.floor(Math.random() * 50);
-    $('#thread').html(`
-      <div class="card mb-2">
-        <div class="card-body">
-            <div class="media forum-item">
-                <a href="javascript:void(0)" class="card-link">
-                    <img src="${ret.url}" class="rounded-circle" width="50" alt="User" />
-                    <small class="d-block text-center text-muted"></small>
-                </a>
-                <div class="media-body ml-3">
-                    <a href="javascript:void(0)" class="text-secondary">${ret.snap.user.username}</a>
-                    <small class="text-muted ml-2">${nl_time}</small>
-                    <h5 class="mt-1">${dict.title}</h5>
-                    <div class="mt-3 font-size-sm">
-                        <p>${text2html(dict.content)}</p>
-                    </div>
-                    <div style="margin-bottom: 10px;">${img}</div>
-                    ${(tagsWithColors.length) ? '<p>Tags: ' + tagsWithColors.join(' ') + '<p>' : ''}
-                    <p>Actions: <button class="btn-sm btn" onclick="increase();"><i id="star-icon" class="far fa-star"></i> Star (<span id="star-counter">${num_stars}</span>)</button><button class="btn-sm btn"><i class="far fa-bookmark"></i> Bookmark</button></p>
-                </div>
-                <div class="text-muted small text-center">
-                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                    <span><i class="far fa-comment ml-2"></i> 3</span>
-                </div>
-            </div>
-        </div>
-    </div>`);
-
-    // And then the profile of the users within the responses.
-    Promise.all(Object.keys(dict.responses ? dict.responses : {}).map(key => fetchProfile(key, dict.responses[key])))
-    .then((ret) => {
-      ret.sort(function(first, second) {
-        return -(second.snap.timestamp - first.snap.timestamp);
+  d = {
+    'name' : `@${snap.val().user.username}`,
+  }
+  
+  Swal.fire({
+    title: `Suggest <a>${d['name']}</a> a stream:`,
+    input: 'select',
+    inputOptions: {
+      'Manifest': 'Manifest',
+      'Love Is Blind': 'Love Is Blind',
+      'Where the Crawdads Sing': 'Where the Crawdads Sing'
+    },
+    inputPlaceholder: '...',
+    showCancelButton: true,
+    inputValidator: function (value) {
+      return new Promise(function (resolve, reject) {
+        if (value !== '') {
+          resolve();
+        } else {
+          resolve('You need to select a Tier');
+        }
       });
+    }
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      console.log('result confirmed=' + thread_id);
+      registerReply(thread_id, userUID, result.value);
 
-      for (elem of ret) {
-        let response = elem.snap;
-        let local_time = explainTime(response.timestamp, 'ago');
-        $(`#thread`).append(`
-          <div class="card mb-2">
-            <div class="card-body">
-              <div class="media forum-item">
-                <a href="javascript:void(0)" class="card-link">
-                  <img src="${elem.url}" class="rounded-circle" width="50" alt="User" />
-                  <small class="d-block text-center text-muted"></small>
-                </a>
-                <div class="media-body ml-3" style="margin-left: 50px;">
-                  <a href="javascript:void(0)" class="text-secondary">${elem.snap.user.username}</a>
-                  <small class="text-muted ml-2">${local_time}</small>
-                  <div class="mt-3 font-size-sm">
-                    <p>${text2html(response.content)}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>`);
-      }
-    });
+      // debugger;
+
+      Swal.fire({
+        icon: 'success',
+        html: `Let's see whether ${d['name']} will watch <i>${result.value}</i>!`
+      });
+    }
   });
 }
 
-async function executeCollapse(id, img) {
-  await renderThread(id, img);
+async function executeCollapse(id) {
+  await renderThread(id);
 }
 
 var curr = undefined;
 
 function activateToggles() {
   $('[data-toggle="collapse"]').click(function() {
-    console.log(curr);
-    console.log($(this));
-    if ((curr !== undefined) && ($(this).attr('id') == curr)) {
-      return;
-    }
+    // console.log('here')
+    // console.log(curr);
+    // console.log($(this));
+
+    let id = $(this).attr('id');
+    console.log('my id=' + id)
+    // if ((curr !== undefined) && ($(this).attr('id') == curr)) {
+    //   return;
+    // }
   
-    curr = $(this).attr('id');
-    let img = $(this).attr("data-img");
-    if (curr !== 'back_button') {
-      executeCollapse(curr, img).then(() => {
-        curr = undefined;
-      });
-    } else {
-      curr = undefined;
-    }
+    // curr = $(this).attr('id');
+
+    // console.log(curr);
+
+    executeCollapse(id);
+
+    // let img = $(this).attr("data-img");
+    // if (curr !== 'back_button') {
+    //   executeCollapse(curr, img).then(() => {
+    //     curr = undefined;
+    //   });
+    // } else {
+    //   curr = undefined;
+    // }
   });
 }
 
+function getIcons(ls) {
+  console.log(ls);
+  active = {
+    'history' : 1,
+    'comedy' : 1
+  }
+
+  html = ``
+  for (elem of ls) {
+    if (elem in active) {
+      html += `<img id='test-icon' src="assets/img/icons/${elem}.png" class="rounded-circle" width="50" alt="User" />`;
+    }
+  }
+  return html;
+}
+
+  
+// <!-- ${(tagsWithColors.length) ? '<p>Tags: ' + tagsWithColors.join(' ') + '<p>' : ''} -->
+                
+/* <img id='test-icon' src="assets/img/icons/history.png" class="rounded-circle" width="50" alt="User" /> */
+                
 function renderForum() {
   function get_last_reply(responses) {
     if (!responses)
@@ -134,12 +170,12 @@ function renderForum() {
         return second.snap.timestamp - first.snap.timestamp;
       });
 
-      console.log(ret);
+      // console.log(ret);
 
       function contains(tags, needle) {
-        console.log(needle);
-        console.log(tags.split(','));
-        console.log(tags.split(',').includes(needle));
+        // console.log(needle);
+        // console.log(tags.split(','));
+        // console.log(tags.split(',').includes(needle));
         return tags.split(',').includes(needle);
       }
       let taken = {
@@ -155,17 +191,20 @@ function renderForum() {
         let shown_content = text2html(dict.content);
         let num_eyes = Math.floor(Math.random() * 1000);
 
-        let tagsWithColors = [];
-        if (dict.tags.length) {
-          for (tag of dict.tags.split(',')) {
-            tagsWithColors.push(`<mark style='background: #F5F5F5; border-radius: 5px;'>#${tag}</mark>`);
-          }
+        let tags = [];
+        for (tag of dict.tags.split(',')) {
+          tags.push(tag);
         }
+        // if (dict.tags.length) {
+        //   for (tag of dict.tags.split(',')) {
+        //     tagsWithColors.push(`<mark style='background: #F5F5F5; border-radius: 5px;'>#${tag}</mark>`);
+        //   }
+        // }
 
         let img_html = ``;
         for (const key in taken) {
           if (taken[key] === 1) {
-            console.log('key=' + key + ' containes=' + contains(dict.tags, key));
+            // console.log('key=' + key + ' containes=' + contains(dict.tags, key));
             if (contains(dict.tags, key)) {
               img_html = `<img class="post_img" src="assets/img/${key}-post.png"/>`;
               taken[key] = 0;
@@ -198,7 +237,7 @@ function renderForum() {
                   </div>
                   ${img_html}
                   <div id='status.${elem.id}'>${add_info}</div>
-                  ${(tagsWithColors.length) ? '<p>Tags: ' + tagsWithColors.join(' ') + '<p>' : ''}
+                  <p>Tags: ${getIcons(tags)}</p>
                 </div>
                 <div class="text-muted small text-center">
                   <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> ${num_eyes}</span>
@@ -217,15 +256,15 @@ function renderForum() {
           // No snap?
           if (!snap.exists()) return;
 
-          console.log('[refresh] snap=' + snap.val());
+          // console.log('[refresh] snap=' + snap.val());
 
           // Refresh the status.
           let add_info = '';
           if (snap.val().responses) {
             let last_reply = get_last_reply(snap.val().responses);
-            add_info = `<p class="text-muted"><a href="javascript:void(0)">${last_reply.user.username}</a> replied <span class="text-secondary font-weight-bold">${explainTime(last_reply.timestamp, 'ago')}</span></p>`;
+            add_info = `<p class="text-muted"><a href="javascript:void(0)">${last_reply.user.username}</a> suggested a stream <span class="text-secondary font-weight-bold">${explainTime(last_reply.timestamp, 'ago')}</span></p>`;
           } else {
-            add_info = `<p class="text-muted"><a href="javascript:void(0)">${snap.val().user.username}</a> posted <span class="text-secondary font-weight-bold">${explainTime(snap.val().timestamp, 'ago')}</span></p>`;
+            add_info = `<p class="text-muted"><a href="javascript:void(0)">${snap.val().user.username}</a> asked for a stream <span class="text-secondary font-weight-bold">${explainTime(snap.val().timestamp, 'ago')}</span></p>`;
           }
 
           // And reset the html.
