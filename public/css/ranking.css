@@ -1,4 +1,4 @@
-body { font-size: 20px; }
+body { font-size: 25px; }
 
 hr {
   border: 3px solid #f1f1f1;
@@ -11,7 +11,7 @@ hr {
 }
 
 .content {
-  width: 80%;
+  width: 100%;
   margin: 20px auto 0 auto;
 }
 

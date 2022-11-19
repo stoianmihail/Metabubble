@@ -2,7 +2,7 @@
 /*======================================================
                           Navbar
   ======================================================*/
-#navbar {
+/* #navbar {
   background: white;
   color: rgb(13, 26, 38);
   position: fixed;
@@ -10,6 +10,18 @@
   height: 60px;
   line-height: 60px;
   width: 100vw;
+  z-index: 10;
+} */
+
+#navbar {
+  background: white;
+  color: rgb(13, 26, 38);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  line-height: 60px;
+  width: 100%;
   z-index: 10;
 }
 
@@ -27,19 +39,39 @@
       }
     } 
 
+/* @media (max-width: 768px)
+.logo {
+    margin-left: 5px;
+} */
+
+
+/* @media(max-width: 768px) {
+  .logo {
+    margin-left: 5px;
+  }
+} */
+
+/* .logo {
+  float: left;
+  margin-left: -25%;
+  font-size: 1.5em;
+  height: 60px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+} */
 
 .logo {
   float: left;
-  margin-left: -15%;
+  margin-left: 0%;
   font-size: 1.5em;
   height: 60px;
   letter-spacing: 1px;
   text-transform: uppercase;
 } @media(max-width: 768px) {
-    .logo {
-/*       margin-left: 5px; */
-    }
+  .logo {
+    margin-left: 5px;
   }
+}
 
 #navbar ul {
   display: inline-block;

@@ -88,6 +88,12 @@ async function renderThread(thread_id) {
 
       // debugger;
 
+      let myElem = document.getElementById('much');
+      // let curr = parseInt(myElem);
+      // console.log(curr);
+      myElem.innerHTML = `Today: 4 left`;
+      // $(`#much`).
+
       Swal.fire({
         icon: 'success',
         html: `Let's see whether ${d['name']} will watch <i>${result.value}</i>!`
