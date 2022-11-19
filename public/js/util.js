@@ -15,6 +15,13 @@ myUID = generateRandomString();
 var current_user = { 'uid' : myUID, 'username' : '@random' };
 var user_snap = undefined;
 
+db.ref('winner').on('value', snap => {
+  if (snap.val() == myUID) {
+    //
+  }
+});
+
+
 function resetCurrentUser() {
   current_user = { 'uid' : undefined, 'username' : undefined };
   user_snap = undefined;

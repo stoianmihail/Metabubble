@@ -91,47 +91,30 @@ async function renderThread(thread_id) {
       Swal.fire({
         icon: 'success',
         html: `Let's see whether ${d['name']} will watch <i>${result.value}</i>!`
-      }).then(() => 
-        window.location.href = 'index.html'
-      );
+      });
+
+      elem.toggle('slow');
     }
   });
 }
 
-async function executeCollapse(id) {
-  await renderThread(id);
+async function executeCollapse(id, elem) {
+  await renderThread(id, elem);
 }
 
 var curr = undefined;
 
-function activateToggles() {
-  $('[data-toggle="collapse"]').click(function() {
-    // console.log('here')
-    // console.log(curr);
-    // console.log($(this));
-
-    let id = $(this).attr('id');
-    console.log('my id=' + id)
-    // if ((curr !== undefined) && ($(this).attr('id') == curr)) {
-    //   return;
-    // }
-  
-    // curr = $(this).attr('id');
-
-    // console.log(curr);
-
-    executeCollapse(id);
-
-    // let img = $(this).attr("data-img");
-    // if (curr !== 'back_button') {
-    //   executeCollapse(curr, img).then(() => {
-    //     curr = undefined;
-    //   });
-    // } else {
-    //   curr = undefined;
-    // }
-  });
+function wrapper(elem) {
+  let id = $(`#${elem}`).attr('id');
+  console.log('my id=' + id)
+  executeCollapse(id, elem);
 }
+
+// function activateToggles() {
+//   $('[data-toggle="modal"]').click(function() {
+//     wrapper($(this));
+//   });
+// }
 
 function getIcons(ls) {
   console.log(ls);
@@ -238,7 +221,7 @@ function renderForum() {
                   <img id='profile.${elem}' src="${elem.url}" class="rounded-circle" width="50" alt="User" />
                   <small class="d-block text-center text-muted"></small>
                 </a>
-                <div id='${elem.id}' data-img='${img_html}' class="media-body ml-3" href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">
+                <div id='${elem.id}' data-img='${img_html}' class="media-body ml-3" href="#" onclick="wrapper('${elem.id}');" data-target=".forum-content" class="text-body">
                   <a href="javascript:void(0)" class="text-secondary">${elem.snap.user.username}</a>
                   <h6>${dict.title}</h6>
                   <div class="mt-3 font-size-sm">
@@ -283,7 +266,7 @@ function renderForum() {
       }
 
       // Activate toggles.
-      activateToggles();
+      // activateToggles();
     });
   });
 }
