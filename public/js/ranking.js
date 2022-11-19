@@ -83,7 +83,7 @@ var starRating = document.querySelectorAll(".fa-star"),
 ratingTotal = document.querySelectorAll(".rating-total");
 
 // convert ratingTotal HTMLCollection to array and reverse its order (5 star <-> 1 star)
-var reverseRatingTotal = Array.from(ratingTotal).reverse();
+var reverseRatingTotal = Array.from(ratingTotal);//.reverse();
 
 // display initial rating totals
 displayTotals(true);
@@ -132,8 +132,7 @@ const colors = {
 
 function playme() {
   var audio = new Audio('assets/drum.mp3');
-audio.play();
-  // $(`#drum-music`).play();
+  audio.play();
 }
 
 // display star rating totals from html custom data-
@@ -153,16 +152,9 @@ function displayTotals(init=false, order=undefined) {
     numRatingsValue = 0;
 
   // convert barChart HTMLCollection to array and reverse its order (5 star <-> 1 star)
-  var reverseBarChart = Array.from(barChart).reverse();
+  var reverseBarChart = Array.from(barChart);
 
   reverseRatingTotal.forEach(function(total, index) {
-    // if (index == selectedIndex) {
-    //   // add selected rating to display total
-    //   total.innerHTML = (parseInt(total.getAttribute("data-rating-count")) + 1);
-    //   // adjust selected bar width
-    //   reverseBarChart[index].style.width = (((parseInt(total.getAttribute("data-rating-count")) + 1) / 20) * 100) + "%";
-    // } else {
-      // display unselected totals
     let count = total.getAttribute("data-rating-count");
     if (count !== 0) { 
       total.innerHTML = total.getAttribute("data-rating-count");
@@ -170,9 +162,9 @@ function displayTotals(init=false, order=undefined) {
       reverseBarChart[index].style.width = ((total.getAttribute("data-rating-count") / 20) * 100) + "%";
       if (order) {
         let len = order.length;
-        console.log(len);
-        // console.log('index=' + index + ' test=' + order[index][0] + ' color=' + colors[order[index][0]]);
-        reverseBarChart[index].style.background = colors[order[len - index - 1][0]];
+        if (index < len) {
+          reverseBarChart[index].style.background = colors[order[index][0]];
+        }
       }
     }
       // }
@@ -189,7 +181,6 @@ function displayTotals(init=false, order=undefined) {
 function setWinner(winnerUID, filmRef) {
   console.log(winnerUID);
   console.log(filmRef);
-  debugger;
   db.ref("winner").update({
     uid: winnerUID
   }).then(() => {
@@ -204,13 +195,18 @@ db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
     let film = value.content;
     console.log(film);
     if (!(film in d)) {
-      d[film] = [0, "", 0];
+      d[film] = [0, "", 2642494872356];
     }
     // console.log(d);
     // TODO: change to smallest!
-    if (value.timestamp > d[film][2]) {
-      d[film][2] = value.timestamp;
+    console.log(value.timestamp);
+    console.log(d[film][2]);
+    if (value.timestamp < d[film][2]) {
+      d[film][2] = value.timestamp
       d[film][1] = value.user.uid;
+      console.log('ici');
+    } else {
+      console.log('else');
     }
     // d[film][1] = value.user.uid;
     d[film][0]++;
