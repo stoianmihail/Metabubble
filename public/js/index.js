@@ -12,7 +12,7 @@ function registerReply(threadID, userUID, stream) {
   async function createReply(elem, args) {
     // Fetch the thread id.
     let thread_id = elem;//.id.split('.')[1];
-    // console.log('trhead_id=' + thread_id)
+    console.log('trhead_id=' + thread_id)
 
     // Set the user.
     args['user'] = current_user;
@@ -21,6 +21,8 @@ function registerReply(threadID, userUID, stream) {
     let key = db.ref(`posts/${thread_id}`).child('responses').push().key;
   
     console.log('key=' + key);
+
+    console.log(args);
 
     // And update.
     let updates = {};
@@ -34,12 +36,12 @@ function registerReply(threadID, userUID, stream) {
     timestamp : getTimestamp()
   }).then((ret) => {
     console.log(ret);
-    // // Delete the element.
+    // Delete the element.
     // deleteElement(document.getElementById(`response.${ret[0]}`));
 
-    // // Reset thread.
+    // Reset thread.
     // renderThread(ret[0]).then(() => {
-    //   enableScreen();
+    enableScreen();
     // });
   });
 }
@@ -195,6 +197,8 @@ function renderForum() {
         for (tag of dict.tags.split(',')) {
           tags.push(tag);
         }
+
+        // console.log('tags=' + tags);
         // if (dict.tags.length) {
         //   for (tag of dict.tags.split(',')) {
         //     tagsWithColors.push(`<mark style='background: #F5F5F5; border-radius: 5px;'>#${tag}</mark>`);
@@ -215,6 +219,7 @@ function renderForum() {
 
         let add_info = '';
         if (dict.responses) {
+          console.log('what? ' + elem.snap.user.uid)
           let last_reply = get_last_reply(dict.responses);
           add_info = `<p class="text-muted"><a href="javascript:void(0)">${last_reply.user.username}</a> replied <span class="text-secondary font-weight-bold">${explainTime(last_reply.timestamp, 'ago')}</span></p>`;
         } else {
@@ -262,6 +267,7 @@ function renderForum() {
           let add_info = '';
           if (snap.val().responses) {
             let last_reply = get_last_reply(snap.val().responses);
+            console.log(last_reply);
             add_info = `<p class="text-muted"><a href="javascript:void(0)">${last_reply.user.username}</a> suggested a stream <span class="text-secondary font-weight-bold">${explainTime(last_reply.timestamp, 'ago')}</span></p>`;
           } else {
             add_info = `<p class="text-muted"><a href="javascript:void(0)">${snap.val().user.username}</a> asked for a stream <span class="text-secondary font-weight-bold">${explainTime(snap.val().timestamp, 'ago')}</span></p>`;

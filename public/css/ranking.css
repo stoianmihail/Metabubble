@@ -1,0 +1,84 @@
+hr {
+  border: 3px solid #f1f1f1;
+}
+
+#content-main {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.content {
+  width: 600px;
+  margin: 20px auto 0 auto;
+}
+
+.content-heading {
+  margin-right: 25px;
+  font-size: 25px;
+}
+
+.fa {
+  font-size: 25px;
+}
+
+.active {
+  color: orange;
+}
+
+/* three column layout */
+.col-1, .col-3 {
+  width: 15%;
+  float: left;
+  margin-top: 10px;
+}
+
+.col-2 {
+  width: 70%;
+  float: left;
+  margin-top: 10px;
+}
+
+.col-3 {
+  text-align: right;
+}
+
+/* clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* bars */
+.bar {
+  height: 18px;
+}
+
+.bar-5-star {
+  background-color: #4caf50;
+}
+
+.bar-4-star {
+  background-color: #2196f3;
+}
+
+.bar-3-star {
+  background-color: #00bcd4;
+}
+
+.bar-2-star {
+  background-color: #ff9800;
+}
+
+.bar-1-star {
+  background-color: #f44336;
+}

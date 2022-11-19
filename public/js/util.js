@@ -12,7 +12,7 @@ const generateRandomString = (length = 8, charset = 'abcdefghijklmnopqrstuvwxyz0
 
 // The current user.
 myUID = generateRandomString();
-var current_user = { 'uid' : myUID, 'username' : undefined };
+var current_user = { 'uid' : myUID, 'username' : '@random' };
 var user_snap = undefined;
 
 function resetCurrentUser() {
