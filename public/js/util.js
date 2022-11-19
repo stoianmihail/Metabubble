@@ -25,13 +25,14 @@ db.ref('winner').on('value', snap => {
   console.log(snap.val().uid);
   console.log(myUID);
   if (snap.val().uid == myUID) {
-    $('#winner-bubble').css("display", "block"); // show button on click
-    let elem = document.getElementById('bubbles');
-    let curr = parseInt(elem.innerHTML);
-    elem.innerHTML = `${curr + 1}`;
-    // let curr = parseInt(document.getElementById('bubbles').innerHTML);
+    window.location.href = 'bubble.html';
+    // $('#winner-bubble').css("display", "block"); // show button on click
+    // let elem = document.getElementById('bubbles');
+    // let curr = parseInt(elem.innerHTML);
+    // elem.innerHTML = `${curr + 1}`;
+    // // let curr = parseInt(document.getElementById('bubbles').innerHTML);
 
-    console.log(curr);
+    // console.log(curr);
     // $('#bubbles').html('1');
     // console.log('winner!');
   }

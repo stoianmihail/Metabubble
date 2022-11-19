@@ -96,7 +96,9 @@ async function renderThread(thread_id) {
 
       Swal.fire({
         icon: 'success',
-        html: `Let's see whether ${d['name']} will watch <i>${result.value}</i>!`
+        html: `Let's see whether ${d['name']} will watch <i>${result.value}</i>!`,
+        showConfirmButton: false,
+        timer: 3000
       });
 
       // elem.toggle('slow');
