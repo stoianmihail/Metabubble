@@ -91,7 +91,7 @@ async function renderThread(thread_id) {
       let myElem = document.getElementById('much');
       // let curr = parseInt(myElem);
       // console.log(curr);
-      myElem.innerHTML = `Today: 4 left`;
+      myElem.innerHTML = `Today: 4 votes left`;
       // $(`#much`).
 
       Swal.fire({
@@ -230,7 +230,7 @@ function renderForum() {
           `<div class="card mb-2">
             <div class="card-body">
               <div class="media forum-item">
-                <a href="user.html?uid=${dict.user.uid}" class="card-link">
+                <a class="card-link" onclick="wrapper('${elem.id}');">
                   <img id='profile.${elem}' src="${elem.url}" class="rounded-circle" width="50" alt="User" />
                   <small class="d-block text-center text-muted"></small>
                 </a>

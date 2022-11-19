@@ -113,8 +113,25 @@ displayTotals(true);
 //   });
 // }
 
+
+const lookup = {
+  'Love Is Blind' : 'https://www.youtube.com/watch?v=s2eBAFt3L_0',
+  'The Crown' : 'https://www.youtube.com/watch?v=JWtnJjn6ng0',
+  'Falling For Christmas' : 'https://www.youtube.com/watch?v=bsNIJd45jYM',
+  'The Good Nurse' : 'https://www.youtube.com/watch?v=e0DQevX-GZs',
+  'Manifest' : 'https://www.youtube.com/watch?v=0wkMl-igRio'
+}
+
+const colors = {
+  'Love Is Blind' : 'red',
+  'The Crown' : 'pink',
+  'Falling For Christmas' : 'green',
+  'The Good Nurse' : 'blue',
+  'Manifest' : 'black'
+}
+
 // display star rating totals from html custom data-
-function displayTotals(init=false) {
+function displayTotals(init=false, order=undefined) {
   if (init === true) {
     console.log('inside');
     $('#film-1').hide();//.remove("active");
@@ -145,6 +162,12 @@ function displayTotals(init=false) {
       total.innerHTML = total.getAttribute("data-rating-count");
       // adjust unselected bar widths
       reverseBarChart[index].style.width = ((total.getAttribute("data-rating-count") / 20) * 100) + "%";
+      if (order) {
+        let len = order.length;
+        console.log(len);
+        // console.log('index=' + index + ' test=' + order[index][0] + ' color=' + colors[order[index][0]]);
+        reverseBarChart[index].style.background = colors[order[len - index - 1][0]];
+      }
     }
       // }
     // count total number and value of ratings
@@ -155,14 +178,6 @@ function displayTotals(init=false) {
   // display rating average and total
   ratingsAverage = (numRatingsValue / numRatings).toFixed(2);
   // displaySummary[0].innerHTML = ratingsAverage + " average based on " + numRatings + " reviews.";
-}
-
-const lookup = {
-  'Love Is Blind' : 'https://www.youtube.com/watch?v=s2eBAFt3L_0',
-  'The Crown' : 'https://www.youtube.com/watch?v=JWtnJjn6ng0',
-  'Falling For Christmas' : 'https://www.youtube.com/watch?v=bsNIJd45jYM',
-  'The Good Nurse' : 'https://www.youtube.com/watch?v=e0DQevX-GZs',
-  'Manifest' : 'https://www.youtube.com/watch?v=0wkMl-igRio'
 }
 
 function setWinner(winnerUID, filmRef) {
@@ -217,6 +232,6 @@ db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
     ++index;
   }
 
-  displayTotals();
+  displayTotals(false, input);
   console.log(d);
 });
