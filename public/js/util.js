@@ -15,7 +15,7 @@ myUID = generateRandomString();
 var current_user = { 'uid' : myUID, 'username' : '@random' };
 var user_snap = undefined;
 
-$('#winner-bubble').css("display", "none"); // hide at beginning
+// $('#winner-bubble').css("display", "none"); // hide at beginning
 
 // $('#button').click(function(){
 //   $('#picture').css("display", "block"); // show button on click
