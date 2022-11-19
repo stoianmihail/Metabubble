@@ -15,9 +15,18 @@ myUID = generateRandomString();
 var current_user = { 'uid' : myUID, 'username' : '@random' };
 var user_snap = undefined;
 
+$('#winner-bubble').css("display", "none"); // hide at beginning
+
+// $('#button').click(function(){
+//   $('#picture').css("display", "block"); // show button on click
+// });
+
 db.ref('winner').on('value', snap => {
-  if (snap.val() == myUID) {
-    //
+  console.log(snap.val().uid);
+  console.log(myUID);
+  if (snap.val().uid == myUID) {
+    $('#winner-bubble').css("display", "block"); // show button on click
+    // console.log('winner!');
   }
 });
 

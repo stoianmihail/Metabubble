@@ -165,6 +165,17 @@ const lookup = {
   'Manifest' : 'https://www.youtube.com/watch?v=0wkMl-igRio'
 }
 
+function setWinner(winnerUID, filmRef) {
+  console.log(winnerUID);
+  console.log(filmRef);
+  debugger;
+  db.ref("winner").update({
+    uid: winnerUID
+  }).then(() => {
+    window.location.href = filmRef;
+  });
+}
+
 db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
   console.log(snap.val());
   let d = {}; 
@@ -172,10 +183,15 @@ db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
     let film = value.content;
     console.log(film);
     if (!(film in d)) {
-      d[film] = [0, ""];
+      d[film] = [0, "", 0];
     }
     // console.log(d);
-    d[film][1] = value.user.uid;
+    // TODO: change to smallest!
+    if (value.timestamp > d[film][2]) {
+      d[film][2] = value.timestamp;
+      d[film][1] = value.user.uid;
+    }
+    // d[film][1] = value.user.uid;
     d[film][0]++;
     // console.log(key, value);
   }
@@ -195,7 +211,7 @@ db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
   for (const elem of input) {
     $(`#film-${index}`).show();
     $(`#name-${index}`).html(
-      `<a href=${lookup[elem[0]]}>${elem[0]}</a>`
+      `<button onclick="setWinner('${elem[1][1]}', '${lookup[elem[0]]}')">${elem[0]}</a>`
     );
     $(`#rating-${index}`).attr("data-rating-count", elem[1][0]);
     ++index;

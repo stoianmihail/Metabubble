@@ -93,7 +93,7 @@ async function renderThread(thread_id) {
         html: `Let's see whether ${d['name']} will watch <i>${result.value}</i>!`
       });
 
-      elem.toggle('slow');
+      // elem.toggle('slow');
     }
   });
 }
@@ -233,7 +233,6 @@ function renderForum() {
                 </div>
                 <div class="text-muted small text-center">
                   <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> ${num_eyes}</span>
-                  <span><i class="far fa-comment ml-2"></i> 3</span>
                 </div>
               </div>
             </div>
