@@ -130,6 +130,12 @@ const colors = {
   'Manifest' : 'black'
 }
 
+function playme() {
+  var audio = new Audio('assets/drum.mp3');
+audio.play();
+  // $(`#drum-music`).play();
+}
+
 // display star rating totals from html custom data-
 function displayTotals(init=false, order=undefined) {
   if (init === true) {
