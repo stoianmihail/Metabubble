@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" href="http://www.virendrachandak.com/techtalk/wp-content/themes/zbench/favicon.ico" />
+	<title>Make a div stick to top when scrolled to - Demo - Virendra's Techtalk</title>
+	<link rel="stylesheet" type="text/css" media="all" href="http://www.virendrachandak.com/techtalk/wp-content/themes/zbench/style.css" />
+	<link href="http://www.virendrachandak.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="http://www.virendrachandak.com/demos/demo.css" />
+	<meta name="description" content="Make a div stick to top when scrolled to - Demo - Virendra's Techtalk" /><link rel="canonical" href="http://www.virendrachandak.com/demos/make-a-div-stick-to-top-when-scrolled-to.php" />	<meta property="article:publisher" content="http://www.facebook.com/pages/Virendras-Techtalk/338923339568884" />
+	<meta property="fb:admins" content="676690793" />
+	<meta property="twitter:account_id" content="4503599629352810" />
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="@virendrachandak"/>
+	<meta name="twitter:domain" content="Virendra&#039;s TechTalk"/>
+	<meta name="twitter:creator" content="@virendrachandak"/>
+	<link rel="publisher" href="https://plus.google.com/115357318350699889829/"/>
+	<link rel="author" href="https://plus.google.com/+VirendraChandak" title="Virendra Chandak on Google+" />
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-32573884-1']);
+	_gaq.push(['_gat._forceSSL']);
+	_gaq.push(['_setSiteSpeedSampleRate', 100]);
+	_gaq.push(['_trackPageview']);
+	(function () {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<!-- BEGIN Tynt Script -->
+	<script type="text/javascript">
+	if(document.location.protocol=='http:'){
+		var Tynt=Tynt||[];Tynt.push('cIw852sN4r44npacwqm_6r');
+		(function(){var s=document.createElement('script');s.async="async";s.type="text/javascript";s.src='http://tcr.tynt.com/ti.js';var h=document.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})();
+	}
+	</script>
+	<!-- END Tynt Script -->
+</head>
+<body class="home blog">
+	<!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BDV4G"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5BDV4G');</script>
+	<!-- End Google Tag Manager -->
+	<header id="nav">
+		<div id="header1" style="">
+			<h1><a href="http://www.virendrachandak.com/techtalk/">Virendra&#039;s TechTalk</a></h1>
+		</div>
+	</header>
+	<section class="article_info_container">
+		<div class="article_info clearfix">
+			<div class="article_info_text">
+				This is a demo page for <span class="demo_article_link"><a href="http://www.virendrachandak.com/techtalk/make-a-div-stick-to-top-when-scrolled-to/">Make a div stick to top when scrolled to</a></span>			</div>
+			<div class="article_info_icons">
+				<a id="article_link" class="icon fa fa-reply" data-title="Back to article" href="http://www.virendrachandak.com/techtalk/make-a-div-stick-to-top-when-scrolled-to/"></a><a id="source_link" class="icon fa fa-download" data-title="Download Source Code" href="http://www.virendrachandak.com/demos/make-a-div-stick-to-top-when-scrolled-to.zip"></a>			</div>
+		</div>
+	</section>
+	<div id="demo-wrapper">
+<style>
+	.container{font-size:14px; margin:0 auto; width:960px}
+	.test_content{margin:10px 0;}
+	.scroller_anchor{height:0px; margin:0; padding:0;}
+	.scroller{background:#FFF; border:1px solid #CCC; margin:0 0 10px; z-index:100; height:50px; font-size:18px; font-weight:bold; text-align:center; width:960px;}
+</style>
+
+<div class="container entry">
+	<div class="test_content">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum metus nec neque convallis id interdum nibh aliquet. Nulla eget varius diam. Ut ut dolor dolor. Mauris vehicula sodales mi quis euismod. In sem metus, volutpat nec fringilla sed, fermentum ac turpis. Cras aliquam venenatis rutrum. Donec pharetra ante sit amet justo pellentesque nec consequat ante elementum. Ut imperdiet iaculis tortor, id pretium urna pharetra sit amet. Aenean pharetra nunc risus, ac scelerisque urna. Morbi dictum egestas augue, in euismod metus commodo ac. Duis nisl ante, consequat et tincidunt id, eleifend eu ante. Integer lectus velit, tempus eu feugiat et, adipiscing ut mauris.
+	</div>
+
+	<!-- This div is used to indicate the original position of the scrollable fixed div. -->
+	<div class="scroller_anchor"></div>
+
+	<!-- This div will be displayed as fixed bar at the top of the page, when user scrolls -->
+	<div class="scroller">This is the scrollable bar</div>
+
+	<div class="test_content">
+		Quisque sollicitudin elit vitae diam consequat accumsan. Suspendisse potenti. Donec dapibus tortor at justo eleifend at pellentesque leo lobortis. Etiam ultrices leo et nulla iaculis eu facilisis augue fermentum. Pellentesque eu leo purus. Vestibulum bibendum, metus at bibendum blandit, lacus neque porttitor diam, id facilisis lectus mauris et leo. Donec adipiscing interdum lacus sed condimentum. In auctor sollicitudin orci, ac interdum risus aliquet ullamcorper. Curabitur mollis accumsan vulputate. Etiam adipiscing diam nec dui posuere ut tincidunt felis tristique. Vestibulum neque enim, placerat sed placerat commodo, consectetur ac mauris. Sed ultrices pretium nibh, a blandit libero imperdiet pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+	</div>
+	<div class="test_content">
+		Nam malesuada venenatis eleifend. Sed at est ligula. Aliquam vehicula nibh vel est rutrum et egestas nisi luctus. Nullam eget felis erat. Duis porttitor, odio id adipiscing sollicitudin, lorem risus luctus massa, ut tempor ante massa sed nunc. Vestibulum in pellentesque metus. Praesent vitae tellus et urna tempor pretium. Vivamus urna tortor, accumsan id euismod at, posuere vitae dui. Pellentesque ante odio, sodales eget varius luctus, pulvinar et sapien. Mauris eget varius dolor. Suspendisse ante felis, tempus non gravida mollis, ultrices ut dui. Maecenas lacinia arcu sit amet nisi suscipit vehicula. Mauris commodo arcu non nibh placerat nec tincidunt velit mattis. Vivamus convallis mauris vitae erat pretium accumsan. Sed at lectus nec ante tristique auctor. Praesent feugiat mattis pretium.
+	</div>
+	<div class="test_content">
+		Nunc lacinia sapien turpis, non euismod augue. Fusce eget posuere dolor. Maecenas pharetra nisl eget neque facilisis luctus. Donec lectus mi, dictum nec rhoncus ut, ultrices eu ipsum. Nulla adipiscing bibendum gravida. Nullam sodales neque quis ligula vulputate faucibus. Nunc diam quam, vestibulum ut luctus at, congue nec elit. Curabitur luctus turpis id arcu laoreet malesuada. Donec bibendum suscipit pulvinar. Etiam dictum porttitor tellus, eu rutrum massa placerat at. Ut malesuada rutrum purus, non convallis ante condimentum eu. Maecenas facilisis lacinia purus, sit amet ornare justo eleifend at. Sed gravida iaculis justo vel lobortis.
+	</div>
+	<div class="test_content">
+		Fusce vel nisl vitae sem commodo dapibus. In hac habitasse platea dictumst. Cras imperdiet augue at massa fermentum ac ultrices sapien commodo. Phasellus purus risus, adipiscing non faucibus in, rutrum at neque. Nunc blandit lorem varius elit gravida aliquet. Suspendisse potenti. Nulla laoreet commodo nunc, quis sollicitudin lectus laoreet vel. Ut eu nisl dolor, a tempus metus.
+	</div>
+	<div class="test_content">
+		Quisque sollicitudin elit vitae diam consequat accumsan. Suspendisse potenti. Donec dapibus tortor at justo eleifend at pellentesque leo lobortis. Etiam ultrices leo et nulla iaculis eu facilisis augue fermentum. Pellentesque eu leo purus. Vestibulum bibendum, metus at bibendum blandit, lacus neque porttitor diam, id facilisis lectus mauris et leo. Donec adipiscing interdum lacus sed condimentum. In auctor sollicitudin orci, ac interdum risus aliquet ullamcorper. Curabitur mollis accumsan vulputate. Etiam adipiscing diam nec dui posuere ut tincidunt felis tristique. Vestibulum neque enim, placerat sed placerat commodo, consectetur ac mauris. Sed ultrices pretium nibh, a blandit libero imperdiet pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+	</div>
+	<div class="test_content">
+		Nam malesuada venenatis eleifend. Sed at est ligula. Aliquam vehicula nibh vel est rutrum et egestas nisi luctus. Nullam eget felis erat. Duis porttitor, odio id adipiscing sollicitudin, lorem risus luctus massa, ut tempor ante massa sed nunc. Vestibulum in pellentesque metus. Praesent vitae tellus et urna tempor pretium. Vivamus urna tortor, accumsan id euismod at, posuere vitae dui. Pellentesque ante odio, sodales eget varius luctus, pulvinar et sapien. Mauris eget varius dolor. Suspendisse ante felis, tempus non gravida mollis, ultrices ut dui. Maecenas lacinia arcu sit amet nisi suscipit vehicula. Mauris commodo arcu non nibh placerat nec tincidunt velit mattis. Vivamus convallis mauris vitae erat pretium accumsan. Sed at lectus nec ante tristique auctor. Praesent feugiat mattis pretium.
+	</div>
+	<div class="test_content">
+		Nunc lacinia sapien turpis, non euismod augue. Fusce eget posuere dolor. Maecenas pharetra nisl eget neque facilisis luctus. Donec lectus mi, dictum nec rhoncus ut, ultrices eu ipsum. Nulla adipiscing bibendum gravida. Nullam sodales neque quis ligula vulputate faucibus. Nunc diam quam, vestibulum ut luctus at, congue nec elit. Curabitur luctus turpis id arcu laoreet malesuada. Donec bibendum suscipit pulvinar. Etiam dictum porttitor tellus, eu rutrum massa placerat at. Ut malesuada rutrum purus, non convallis ante condimentum eu. Maecenas facilisis lacinia purus, sit amet ornare justo eleifend at. Sed gravida iaculis justo vel lobortis.
+	</div>
+	<div class="test_content">
+		Fusce vel nisl vitae sem commodo dapibus. In hac habitasse platea dictumst. Cras imperdiet augue at massa fermentum ac ultrices sapien commodo. Phasellus purus risus, adipiscing non faucibus in, rutrum at neque. Nunc blandit lorem varius elit gravida aliquet. Suspendisse potenti. Nulla laoreet commodo nunc, quis sollicitudin lectus laoreet vel. Ut eu nisl dolor, a tempus metus.
+	</div>
+	<div class="test_content">
+		Quisque sollicitudin elit vitae diam consequat accumsan. Suspendisse potenti. Donec dapibus tortor at justo eleifend at pellentesque leo lobortis. Etiam ultrices leo et nulla iaculis eu facilisis augue fermentum. Pellentesque eu leo purus. Vestibulum bibendum, metus at bibendum blandit, lacus neque porttitor diam, id facilisis lectus mauris et leo. Donec adipiscing interdum lacus sed condimentum. In auctor sollicitudin orci, ac interdum risus aliquet ullamcorper. Curabitur mollis accumsan vulputate. Etiam adipiscing diam nec dui posuere ut tincidunt felis tristique. Vestibulum neque enim, placerat sed placerat commodo, consectetur ac mauris. Sed ultrices pretium nibh, a blandit libero imperdiet pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+	</div>
+	<div class="test_content">
+		Nam malesuada venenatis eleifend. Sed at est ligula. Aliquam vehicula nibh vel est rutrum et egestas nisi luctus. Nullam eget felis erat. Duis porttitor, odio id adipiscing sollicitudin, lorem risus luctus massa, ut tempor ante massa sed nunc. Vestibulum in pellentesque metus. Praesent vitae tellus et urna tempor pretium. Vivamus urna tortor, accumsan id euismod at, posuere vitae dui. Pellentesque ante odio, sodales eget varius luctus, pulvinar et sapien. Mauris eget varius dolor. Suspendisse ante felis, tempus non gravida mollis, ultrices ut dui. Maecenas lacinia arcu sit amet nisi suscipit vehicula. Mauris commodo arcu non nibh placerat nec tincidunt velit mattis. Vivamus convallis mauris vitae erat pretium accumsan. Sed at lectus nec ante tristique auctor. Praesent feugiat mattis pretium.
+	</div>
+	<div class="test_content">
+		Nunc lacinia sapien turpis, non euismod augue. Fusce eget posuere dolor. Maecenas pharetra nisl eget neque facilisis luctus. Donec lectus mi, dictum nec rhoncus ut, ultrices eu ipsum. Nulla adipiscing bibendum gravida. Nullam sodales neque quis ligula vulputate faucibus. Nunc diam quam, vestibulum ut luctus at, congue nec elit. Curabitur luctus turpis id arcu laoreet malesuada. Donec bibendum suscipit pulvinar. Etiam dictum porttitor tellus, eu rutrum massa placerat at. Ut malesuada rutrum purus, non convallis ante condimentum eu. Maecenas facilisis lacinia purus, sit amet ornare justo eleifend at. Sed gravida iaculis justo vel lobortis.
+	</div>
+	<div class="test_content">
+		Fusce vel nisl vitae sem commodo dapibus. In hac habitasse platea dictumst. Cras imperdiet augue at massa fermentum ac ultrices sapien commodo. Phasellus purus risus, adipiscing non faucibus in, rutrum at neque. Nunc blandit lorem varius elit gravida aliquet. Suspendisse potenti. Nulla laoreet commodo nunc, quis sollicitudin lectus laoreet vel. Ut eu nisl dolor, a tempus metus.
+	</div>
+</div>
+
+<script>
+// This function will be executed when the user scrolls the page.
+$(window).scroll(function(e) {
+	// Get the position of the location where the scroller starts.
+	var scroller_anchor = $(".scroller_anchor").offset().top;
+
+	// Check if the user has scrolled and the current position is after the scroller's start location and if its not already fixed at the top
+	if ($(this).scrollTop() >= scroller_anchor && $('.scroller').css('position') != 'fixed')
+	{    // Change the CSS of the scroller to hilight it and fix it at the top of the screen.
+		$('.scroller').css({
+			'background': '#CCC',
+			'border': '1px solid #000',
+			'margin-top' : '50px',
+			'position': 'fixed',
+			'top': '0px'
+		});
+		// Changing the height of the scroller anchor to that of scroller so that there is no change in the overall height of the page.
+		$('.scroller_anchor').css('height', '50px');
+	}
+	else if ($(this).scrollTop() < scroller_anchor && $('.scroller').css('position') != 'relative')
+	{    // If the user has scrolled back to the location above the scroller anchor place it back into the content.
+
+		// Change the height of the scroller anchor to 0 and now we will be adding the scroller back to the content.
+		$('.scroller_anchor').css('height', '0px');
+
+		// Change the CSS and put it back to its original position.
+		$('.scroller').css({
+			'background': '#FFF',
+			'border': '1px solid #CCC',
+			'position': 'relative'
+		});
+	}
+});
+</script>
+
+	</div>
+	<div class="clear"></div>
+	<footer id="footer">
+		<div id="footer-inside">
+			<p>Copyright &copy; 2014 Virendra&#039;s TechTalk | <a href="http://www.virendrachandak.com/techtalk/disclaimer/">Disclaimer</a> | <a href="http://www.virendrachandak.com/techtalk/privacy/">Privacy</a></p>
+			<span id="back-to-top">&uarr; <a href="#" rel="nofollow" title="Back to top">Top</a></span>
+		</div>
+	</footer>
+
+	<!-- Quantcast Tag -->
+	<script type="text/javascript">
+	var _qevents = _qevents || [];
+	(function() {
+		var elem = document.createElement('script');
+		elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+		elem.async = true;
+		elem.type = "text/javascript";
+		var scpt = document.getElementsByTagName('script')[0];
+		scpt.parentNode.insertBefore(elem, scpt);
+	})();
+	_qevents.push({
+		qacct:"p-dgZ4_09vZKC4w"
+	});
+	</script>
+	<noscript>
+		<div style="display:none;">
+			<img src="//pixel.quantserve.com/pixel/p-dgZ4_09vZKC4w.gif" border="0" height="1" width="1" alt="Quantcast"/>
+		</div>
+	</noscript>
+	<!-- End Quantcast tag -->
+	<script>
+	// Using jQuery Event API v1.3
+	jQuery('#article_link').on('click', function() {
+		ga('send', 'event', 'article', 'http://www.virendrachandak.com/techtalk/make-a-div-stick-to-top-when-scrolled-to/', 'go-to-article', 1);
+		_gaq.push(['_trackEvent', 'article', 'http://www.virendrachandak.com/techtalk/make-a-div-stick-to-top-when-scrolled-to/', 'go-to-article', 1, true]);
+	});
+	jQuery('#source_link').on('click', function() {
+		ga('send', 'event', 'download', 'http://www.virendrachandak.com/demos/make-a-div-stick-to-top-when-scrolled-to.zip', 'download-source', 1);
+		_gaq.push(['_trackEvent', 'download', 'http://www.virendrachandak.com/demos/make-a-div-stick-to-top-when-scrolled-to.zip', 'download-source', 1, true]);
+	});
+	</script>
+</body>
+</html>
