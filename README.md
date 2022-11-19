@@ -21,7 +21,7 @@ firebase serve
 
 # Demo
 
-[Metabubble](meta-bubble.web.app "Metabubble")
+[Metabubble](https://meta-bubble.web.app "Metabubble")
 
 # Presentation
 
