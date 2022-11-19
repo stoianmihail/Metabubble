@@ -66,7 +66,9 @@ async function renderThread(thread_id) {
     inputOptions: {
       'Manifest': 'Manifest',
       'Love Is Blind': 'Love Is Blind',
-      'Where the Crawdads Sing': 'Where the Crawdads Sing'
+      'The Good Nurse': 'The Good Nurse',
+      'Falling For Christmas' : 'Falling For Christmas',
+      'The Crown' : 'The Crown'
     },
     inputPlaceholder: '...',
     showCancelButton: true,
@@ -89,7 +91,9 @@ async function renderThread(thread_id) {
       Swal.fire({
         icon: 'success',
         html: `Let's see whether ${d['name']} will watch <i>${result.value}</i>!`
-      });
+      }).then(() => 
+        window.location.href = 'index.html'
+      );
     }
   });
 }

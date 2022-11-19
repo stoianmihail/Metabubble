@@ -1,25 +1,27 @@
+body { font-size: 20px; }
+
 hr {
   border: 3px solid #f1f1f1;
 }
 
 #content-main {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 30px;
   color: #333;
 }
 
 .content {
-  width: 600px;
+  width: 80%;
   margin: 20px auto 0 auto;
 }
 
 .content-heading {
   margin-right: 25px;
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .fa {
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .active {
@@ -52,7 +54,8 @@ hr {
 
 /* bar container */
 .bar-container {
-  width: 100%;
+  width: 50%;
+  margin-left: 50px;
   background-color: #f1f1f1;
   text-align: center;
   color: white;

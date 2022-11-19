@@ -44,32 +44,33 @@ document.getElementById('ranking').innerHTML = `
   </div>
   </div>
 
-  <!--
+  <div id="film-4">
   <div class="col-1">
-  <div>2 star</div>
+  <div id="name-4">3 star</div>
   </div>
   <div class="col-2">
   <div class="bar-container">
-    <div class="bar bar-2-star"></div>
+    <div class="bar bar-3-star"></div>
   </div>
-  </div>-->
-
-    <!--
+  </div>
   <div class="col-3">
-  <div class="rating-total" data-rating-count="1"></div>
+  <div id="rating-4" class="rating-total" data-rating-count="0"></div>
   </div>
+  </div>
+
+  <div id="film-5">
   <div class="col-1">
-  <div>1 star</div>
+  <div id="name-5">3 star</div>
   </div>
   <div class="col-2">
   <div class="bar-container">
-    <div class="bar bar-1-star"></div>
+    <div class="bar bar-3-star"></div>
   </div>
-  </div>-->
-  
-  <!--<div class="col-3">
-    <div class="rating-total" data-rating-count="3"></div>
-  </div>-->`;
+  </div>
+  <div class="col-3">
+  <div id="rating-5" class="rating-total" data-rating-count="0"></div>
+  </div>
+  </div>`;
 
 // TODO: modify this!!!
 current_user.uid = 'n1oGlF86UrZNIxbgXQ3QQxSGaV13'
@@ -119,6 +120,9 @@ function displayTotals(init=false) {
     $('#film-1').hide();//.remove("active");
     $('#film-2').hide();//classList.remove("active");
     $('#film-3').hide();//classList.remove("active");
+    $('#film-4').hide();//classList.remove("active");
+    $('#film-5').hide();//classList.remove("active");
+  
   }
   var barChart = document.querySelectorAll(".bar"),
     displaySummary = document.querySelectorAll(".summary"),
@@ -153,6 +157,14 @@ function displayTotals(init=false) {
   // displaySummary[0].innerHTML = ratingsAverage + " average based on " + numRatings + " reviews.";
 }
 
+const lookup = {
+  'Love Is Blind' : 'https://www.youtube.com/watch?v=s2eBAFt3L_0',
+  'The Crown' : 'https://www.youtube.com/watch?v=JWtnJjn6ng0',
+  'Falling For Christmas' : 'https://www.youtube.com/watch?v=bsNIJd45jYM',
+  'The Good Nurse' : 'https://www.youtube.com/watch?v=e0DQevX-GZs',
+  'Manifest' : 'https://www.youtube.com/watch?v=0wkMl-igRio'
+}
+
 db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
   console.log(snap.val());
   let d = {}; 
@@ -182,7 +194,9 @@ db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
   let index = 1;
   for (const elem of input) {
     $(`#film-${index}`).show();
-    $(`#name-${index}`).html(elem[0]);
+    $(`#name-${index}`).html(
+      `<a href=${lookup[elem[0]]}>${elem[0]}</a>`
+    );
     $(`#rating-${index}`).attr("data-rating-count", elem[1][0]);
     ++index;
   }
