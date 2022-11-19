@@ -12,7 +12,7 @@ const generateRandomString = (length = 8, charset = 'abcdefghijklmnopqrstuvwxyz0
 
 // The current user.
 myUID = generateRandomString();
-var current_user = { 'uid' : myUID, 'username' : '@random' };
+var current_user = { 'uid' : myUID, 'username' : 'random' };
 var user_snap = undefined;
 
 // $('#winner-bubble').css("display", "none"); // hide at beginning
@@ -26,6 +26,13 @@ db.ref('winner').on('value', snap => {
   console.log(myUID);
   if (snap.val().uid == myUID) {
     $('#winner-bubble').css("display", "block"); // show button on click
+    let elem = document.getElementById('bubbles');
+    let curr = parseInt(elem.innerHTML);
+    elem.innerHTML = `${curr + 1}`;
+    // let curr = parseInt(document.getElementById('bubbles').innerHTML);
+
+    console.log(curr);
+    // $('#bubbles').html('1');
     // console.log('winner!');
   }
 });

@@ -211,7 +211,7 @@ db.ref(`posts/${thread_id}`).child('responses').on('value', snap => {
   for (const elem of input) {
     $(`#film-${index}`).show();
     $(`#name-${index}`).html(
-      `<button onclick="setWinner('${elem[1][1]}', '${lookup[elem[0]]}')">${elem[0]}</a>`
+      `<a onclick="setWinner('${elem[1][1]}', '${lookup[elem[0]]}')">${elem[0]}</a>`
     );
     $(`#rating-${index}`).attr("data-rating-count", elem[1][0]);
     ++index;

@@ -120,7 +120,14 @@ function getIcons(ls) {
   console.log(ls);
   active = {
     'history' : 1,
-    'comedy' : 1
+    'comedy' : 1,
+    'action' : 1,
+    'detective' : 1,
+    'musical' : 1,
+    'romantic' : 1,
+    'sci-fi' : 1,
+    'adventure' : 1,
+    'pirate' : 1
   }
 
   html = ``
@@ -193,16 +200,16 @@ function renderForum() {
         // }
 
         let img_html = ``;
-        for (const key in taken) {
-          if (taken[key] === 1) {
-            // console.log('key=' + key + ' containes=' + contains(dict.tags, key));
-            if (contains(dict.tags, key)) {
-              img_html = `<img class="post_img" src="assets/img/${key}-post.png"/>`;
-              taken[key] = 0;
-              break;
-            }
-          }
-        }
+        // for (const key in taken) {
+        //   if (taken[key] === 1) {
+        //     // console.log('key=' + key + ' containes=' + contains(dict.tags, key));
+        //     if (contains(dict.tags, key)) {
+        //       img_html = `<img class="post_img" src="assets/img/${key}-post.png"/>`;
+        //       taken[key] = 0;
+        //       break;
+        //     }
+        //   }
+        // }
 
         let add_info = '';
         if (dict.responses) {
@@ -254,9 +261,9 @@ function renderForum() {
           if (snap.val().responses) {
             let last_reply = get_last_reply(snap.val().responses);
             console.log(last_reply);
-            add_info = `<p class="text-muted"><a href="javascript:void(0)">${last_reply.user.username}</a> suggested a stream <span class="text-secondary font-weight-bold">${explainTime(last_reply.timestamp, 'ago')}</span></p>`;
+            add_info = `<p class="text-muted"><a href="javascript:void(0)">@${last_reply.user.username}</a> suggested a stream <span class="text-secondary font-weight-bold">${explainTime(last_reply.timestamp, 'ago')}</span></p>`;
           } else {
-            add_info = `<p class="text-muted"><a href="javascript:void(0)">${snap.val().user.username}</a> asked for a stream <span class="text-secondary font-weight-bold">${explainTime(snap.val().timestamp, 'ago')}</span></p>`;
+            add_info = `<p class="text-muted"><a href="javascript:void(0)">@${snap.val().user.username}</a> asked for a stream <span class="text-secondary font-weight-bold">${explainTime(snap.val().timestamp, 'ago')}</span></p>`;
           }
 
           // And reset the html.

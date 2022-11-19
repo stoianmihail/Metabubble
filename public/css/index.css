@@ -8,11 +8,17 @@ html {
   font-size: 16px;
   line-height: 1.5;
 }
+html,body{
+  box-sizing: border-box;
+}
 a, a:visited, a:active, a:link {
   text-decoration: none; color: unset; font-size: unset; line-height: unset; font-weight: unset;
 }
 ol, ul {
   list-style-type: none;  margin: 0;  padding: 0;
+}
+div {
+  word-wrap: break-word;
 }
 .monser-font {
   font-family: 'Montserrat', Helvetica, sans-serif !important;
@@ -248,6 +254,13 @@ ol, ul {
   margin-top: 24px;
 }
   /* ================== RESPONSIVE ================== */
+  @media only screen and (max-width: 768px) {
+      /* For mobile phones: */
+      [class*="col-"] {
+        width: 100%;
+      }
+    }
+
 /* == MENU ITEMS ==  */
 @media screen and (max-width: 1301px) {
 .sailing {
